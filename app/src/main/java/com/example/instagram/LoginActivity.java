@@ -1,5 +1,6 @@
 package com.example.instagram;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginUser(username,password);
             }
         });
+
     }
 
     private void loginUser(String username, String password) {
@@ -65,10 +68,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void goMainActivity() {
+    public void goMainActivity() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         //we finish the log in activity when the user successfully logs in
-        finish();
+      //  finish();
     }
 }
