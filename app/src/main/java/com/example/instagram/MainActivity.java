@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnCaptureImage;
     private ImageView ivPostImage;
     private Button btnSubmit;
+    private Button btnFeed;
     private File photoFile;
     public String photoFileName = "photo.jpg";
 
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         btnCaptureImage = findViewById(R.id.btnCaptureImage);
         btnSubmit = findViewById(R.id.btnSubmit);
         btnLogout = findViewById(R.id.btnLogout);
+        btnFeed = findViewById(R.id.btnFeed);
 
         //setting the on click listener for the logout button
         btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 onLogoutButton(v);
             }
+        });
+
+        //setting the on click listener for the feed click button
+        btnFeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { onFeedButton(v); }
         });
 
 //        queryPosts();
@@ -92,6 +100,12 @@ public class MainActivity extends AppCompatActivity {
                 savePost(description, currentUser, photoFile);
             }
         });
+    }
+
+    private void onFeedButton(View v) {
+        Intent i = new Intent(this, FeedActivity.class);
+        //takes the user to the feed activity
+        startActivity(i);
     }
 
     private void launchCamera() {
@@ -198,8 +212,6 @@ public class MainActivity extends AppCompatActivity {
         ParseUser.logOut();
         ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
         Log.i("MainActivity", "user was logged out");
-//        Intent i = new Intent(this, LoginActivity.class);
-//        startActivity();
         //get out of main activity
         //TODO: revert back to login screen
         finish();

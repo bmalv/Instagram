@@ -1,42 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/etDescription"
+    <!-- Creating Linear layout with vertical orientation -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Description..." />
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnCaptureImage"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="Take Picture" />
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Description..." />
 
-    <ImageView
-        android:id="@+id/ivPostImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        <Button
+            android:id="@+id/btnCaptureImage"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Take Picture" />
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="Submit" />
+        <ImageView
+            android:id="@+id/ivPostImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Submit" />
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="255dp"
         android:text="Logout"
         tools:layout_editor_absoluteX="315dp"
         tools:layout_editor_absoluteY="687dp" />
-</LinearLayout>
+
+    <Button
+        android:id="@+id/btnFeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="224dp"
+        android:layout_marginBottom="255dp"
+        android:layout_toStartOf="@+id/btnLogout"
+        android:background="@drawable/instagram_home_outline_24" />
+
+</RelativeLayout>
