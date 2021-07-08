@@ -1,10 +1,12 @@
 package com.example.instagram;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -13,6 +15,7 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import org.json.JSONArray;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,8 @@ public class FeedActivity extends AppCompatActivity {
 
     public static final String TAG = "FeedActivity";
 
+    // REQUEST_CODE can be any value we like, used to determine the result type later
+    private final int REQUEST_CODE = 20;
     private SwipeRefreshLayout swipeContainer;
     private RecyclerView rvPosts;
 
@@ -57,10 +62,10 @@ public class FeedActivity extends AppCompatActivity {
         allPosts = new ArrayList<>();
         adapter = new PostsAdapter(this, allPosts);
 
-        //sets the adapter on the recycler view
-        rvPosts.setAdapter(adapter);
         // set the layout manager on the recycler view
         rvPosts.setLayoutManager(new LinearLayoutManager(this));
+        //sets the adapter on the recycler view
+        rvPosts.setAdapter(adapter);
         // query posts from Instagram
         queryPosts();
     }
@@ -96,4 +101,20 @@ public class FeedActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        //check if the request code is the same as the request code being passed in
+        //and check if the result code is result ok
+        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
+            //get data from the intent (tweet)
+            Post post = Parcels.unwrap(data.getParcelableExtra("post"));
+            //update the recycler view with this new tweet
+            //modify data source of tweets
+            allPosts.add(0, post);
+            //update the adapter
+            adapter.notifyItemInserted(0);
+            rvPosts.smoothScrollToPosition(0);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }
