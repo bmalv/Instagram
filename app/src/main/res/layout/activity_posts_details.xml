@@ -5,23 +5,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#B4673AB7">
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="263dp"
+        android:layout_height="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="5dp"
+        android:layout_toEndOf="@+id/ivProfileImage"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:text="bianca" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="507dp"
+        android:layout_below="@+id/ivProfileImage"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="39dp"
         android:orientation="vertical"
+        android:padding="8dp"
         tools:context=".PostsDetailsActivity">
-
-        <TextView
-            android:id="@+id/tvUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:text="bianca" />
 
         <ImageView
             android:id="@+id/ivImage"
@@ -44,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="314dp"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textSize="20sp"
             tools:text="just now" />
 
@@ -58,8 +68,18 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="174dp"
-        android:layout_marginBottom="42dp"
+        android:layout_marginBottom="17dp"
         android:background="#673AB7"
         app:icon="@drawable/instagram_home_outline_24" />
+
+    <ImageView
+        android:id="@+id/ivProfileImage"
+        android:layout_width="116dp"
+        android:layout_height="89dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="7dp"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </RelativeLayout>

@@ -1,8 +1,11 @@
 package com.example.instagram;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.util.Log;
@@ -13,11 +16,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.parse.Parse;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 import org.parceler.Parcels;
 
 import java.util.Date;
+
+import fragments.PostsFragment;
 
 public class PostsDetailsActivity extends AppCompatActivity {
 
@@ -29,6 +35,7 @@ public class PostsDetailsActivity extends AppCompatActivity {
     TextView tvDescription;
     ImageView ivImage;
     TextView tvCreatedAt;
+    ImageView ivProfileImage;
     Button btnFeed;
 
     public PostsDetailsActivity() {}
@@ -43,9 +50,19 @@ public class PostsDetailsActivity extends AppCompatActivity {
         ivImage = (ImageView) findViewById(R.id.ivImage);
         tvCreatedAt = (TextView) findViewById(R.id.tvCreatedAt);
         btnFeed = (Button) findViewById(R.id.btnFeed);
+        ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
 
         post = (Post) Parcels.unwrap(getIntent().getParcelableExtra(Post.class.getSimpleName()));
         Log.i("PostsDetailsActivity", "Showing Post Details!");
+
+        //code that allows the icon to appear on action bar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("");
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#000000"));
+        // Set BackgroundDrawable
+        actionBar.setBackgroundDrawable(colorDrawable);
+        actionBar.setIcon(R.drawable.small_logo);
 
 
         Date createdAt = post.getCreatedAt();
@@ -55,6 +72,10 @@ public class PostsDetailsActivity extends AppCompatActivity {
         tvUsername.setText(post.getUser().getUsername());
         tvDescription.setText(post.getDescription());
 
+        ParseFile pic = post.getProfileImage();
+        if (pic != null) {
+            Glide.with(this).load(pic.getUrl()).circleCrop().into(ivProfileImage);
+        }
 
         //upload the image
         Glide.with(this).load(post.getImage().getUrl()).into(ivImage);
@@ -68,8 +89,7 @@ public class PostsDetailsActivity extends AppCompatActivity {
     }
 
     private void onFeedButton(View v) {
-        Intent i = new Intent(this, FeedActivity.class);
-        //takes the user to the feed activity
-        startActivity(i);
+        //goes back to post fragment
+        finish();
     }
 }
