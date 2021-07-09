@@ -1,13 +1,16 @@
 package com.example.instagram;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.drawable.ColorDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -59,6 +62,15 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
         btnLogout = findViewById(R.id.btnLogout);
         btnFeed = findViewById(R.id.btnFeed);
+
+        //code that allows the icon to appear on action bar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("");
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#000000"));
+        // Set BackgroundDrawable
+        actionBar.setBackgroundDrawable(colorDrawable);
+        actionBar.setIcon(R.drawable.small_logo);
 
         //setting the on click listener for the logout button
         btnLogout.setOnClickListener(new View.OnClickListener() {
