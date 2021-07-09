@@ -51,7 +51,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-![] (https://github.com/bmalv/Instagram/raw/master/instaDemo.gif)
+![](https://github.com/bmalv/Instagram/raw/master/instaDemo.gif)
 
 GIF created with [Kap](https://getkap.co/).
 
